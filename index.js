@@ -7,7 +7,15 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("JAYDEN AI 🤖 est en ligne !");
 });
+app.get("/test", (req, res) => {
+  const message = req.query.message || "!help";
 
+  res.json({
+    bot: "JAYDEN AI",
+    commande: message,
+    reponse: traiterCommande(message)
+  });
+});
 // Commandes commençant par !
 function traiterCommande(texte) {
   const cmd = texte.trim().toLowerCase();
